@@ -5,45 +5,411 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Showcasing My Work</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
+        /* global css */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        p,
+        ul,
+        li {
+            margin: 0;
+            padding: 0;
+        }
+
+        img {
+            max-width: 100%;
+            vertical-align: middle;
+        }
+
+        a,
+        span {
+            display: inline-block;
+            width: 100%;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        li {
+            list-style-type: none;
+        }
+
+        .pt_100 {
+            padding-top: 100px;
+        }
+
+        .pb_100 {
+            padding-bottom: 100px;
+        }
+
+        .fs_48 {
+            font-size: 48px;
+        }
+
+        .fs_28 {
+            font-size: 28px;
+        }
+
+        .fs_18 {
+            font-size: 18px;
+        }
+
+        /* header css */
+        .portfolio_header {
+            position: relative;
+            padding: 15px 0px;
+            background-color: #fff;
+        }
+
+        .portfolio_header .header_wrap {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .portfolio_header .header_wrap .header_logo h3 {
+            font-weight: 500;
+            line-height: 1.4;
+            color: #001219;
+        }
+
+        .portfolio_header .header_wrap .hamburgur {
+            position: relative;
+            width: 40px;
+            height: 35px;
+            background-color: #0a9396;
+            border-radius: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            display: none;
+        }
+
+        .portfolio_header .header_wrap .hamburgur>span {
+            position: relative;
+            width: 70%;
+            height: 2px;
+            background-color: #e9d8a6;
+        }
+
+        .portfolio_header .header_wrap .hamburgur>span::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: -9px;
+            left: 0;
+            background-color: #e9d8a6;
+        }
+
+        .portfolio_header .header_wrap .hamburgur>span::after {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            bottom: -9px;
+            right: 0;
+            background-color: #e9d8a6;
+        }
+
+        .portfolio_header .header_wrap .hamburgur.active>span {
+            background-color: #0a9396;
+        }
+
+        .portfolio_header .header_wrap .hamburgur.active>span::before {
+            top: 0;
+            transform: rotate(45deg);
+        }
+
+        .portfolio_header .header_wrap .hamburgur.active>span::after {
+            bottom: 0;
+            transform: rotate(-45deg);
+        }
+
+        .portfolio_header .header_wrap .header_navbar .navbar_logo {
+            display: none;
+        }
+
+        .portfolio_header .header_wrap .header_navbar ul {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .portfolio_header .header_wrap .header_navbar ul li>a {
+            font-weight: 500;
+            color: #001219;
+            line-height: 1.6;
+        }
+
+        /* main css */
         .hero_section {
             position: relative;
-            padding: 100px 12px;
             background-color: #001219;
-            text-align: center;
+        }
+
+        .hero_section .hero_content_wrap {
+            position: relative;
+            width: 480px;
+            max-width: 100%;
         }
 
         .hero_section h1 {
-            font-size: 50px;
-            font-weight: 600;
+            font-weight: 500;
             line-height: 1.4;
             color: #e9d8a6;
-        }
-
-        .hero_section h1>span {
-            color: #e9d8a6;
+            margin-bottom: 25px;
         }
 
         .hero_section p {
-            font-size: 28px;
             font-weight: 500;
             line-height: 1.6;
             color: #e9d8a6;
+            margin-bottom: 25px;
+        }
+
+        .hero_section .button_wrap a {
+            width: auto;
+            font-size: 16px;
+            font-weight: 500;
+            color: #e9d8a6;
+            background-color: #0a9396;
+            padding: 12px 24px;
+            border-radius: 5px;
+        }
+
+        .hero_section .hero_image_wrap {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            background-color: #0a9396;
+            border-radius: 50%;
+            margin: auto;
+        }
+
+        /* footer css */
+        .portfolio_footer {
+            position: relative;
+            padding: 40px 0px;
+            background-color: #fff;
+            text-align: center;
+        }
+
+        .portfolio_footer h3 {
+            font-weight: 500;
+            line-height: 1.4;
+            color: #001219;
+            margin-bottom: 15px;
+        }
+
+        .portfolio_footer p {
+            font-weight: 500;
+            color: #001219;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .portfolio_footer p:nth-last-child(1) {
+            font-size: 14px;
+            font-weight: 400;
+            margin-bottom: 0px;
+        }
+
+        /* responsive css */
+        @media only screen and (max-width: 1399.98px) {
+            .fs_48 {
+                font-size: 44px;
+            }
+        }
+
+        @media only screen and (max-width: 1199.98px) {
+            .pt_100 {
+                padding-top: 80px;
+            }
+
+            .pb_100 {
+                padding-bottom: 80px;
+            }
+
+            .fs_48 {
+                font-size: 40px;
+            }
+        }
+
+        @media only screen and (max-width: 991.98px) {
+            .pt_100 {
+                padding-top: 60px;
+            }
+
+            .pb_100 {
+                padding-bottom: 60px;
+            }
+
+            .fs_48 {
+                font-size: 36px;
+            }
+
+            .fs_28 {
+                font-size: 24px;
+            }
+        }
+
+        @media only screen and (max-width: 767.98px) {
+            .pt_100 {
+                padding-top: 40px;
+            }
+
+            .pb_100 {
+                padding-bottom: 40px;
+            }
+
+            .fs_48 {
+                font-size: 32px;
+            }
+
+            .fs_28 {
+                font-size: 20px;
+            }
+
+            .fs_18 {
+                font-size: 16px;
+            }
+
+            .portfolio_header .header_wrap .header_navbar {
+                position: fixed;
+                padding: 30px;
+                width: 250px;
+                height: 100%;
+                top: 0;
+                left: 0;
+                background: #0a9396;
+                z-index: 99;
+            }
+
+            .portfolio_header .header_wrap .header_navbar ul {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 20px;
+            }
+
+            .portfolio_header .header_wrap .header_navbar ul li>a {
+                color: #e9d8a6;
+            }
+
+            .portfolio_header .header_wrap .hamburgur {
+                display: flex;
+            }
+
+            .portfolio_header .header_wrap .header_navbar .navbar_logo {
+                display: block;
+            }
+
+            .portfolio_header .header_wrap .header_navbar .navbar_logo h3 {
+                font-weight: 500;
+                color: #e9d8a6;
+                margin-bottom: 15px;
+                padding-bottom: 15px;
+                border-bottom: 1px solid #e9d8a6;
+            }
+        }
+
+        @media only screen and (max-width: 575.98px) {
+            .fs_48 {
+                font-size: 28px;
+            }
+
+            .fs_28 {
+                font-size: 18px;
+            }
+
+            .fs_18 {
+                font-size: 14px;
+            }
         }
     </style>
 </head>
 
 <body>
-    <section class="hero_section">
-        <h1>Kaushal <span>Arya</span></h1>
-        <P>Web Designer & WordPress Developer</P>
+    <header class="portfolio_header">
+        <div class="container">
+            <div class="header_wrap">
+                <div class="header_logo">
+                    <a href="#">
+                        <h3 class="fs_28">Kaushal Arya</h3>
+                    </a>
+                </div>
+                <div class="hamburgur">
+                    <span></span>
+                </div>
+                <div class="header_navbar">
+                    <div class="navbar_logo">
+                        <a href="#">
+                            <h3 class="fs_28">Kaushal Arya</h3>
+                        </a>
+                    </div>
+                    <nav>
+                        <ul>
+                            <li>
+                                <a href="#" class="fs_18">Home</a>
+                            </li>
+                            <li>
+                                <a href="#" class="fs_18">Home</a>
+                            </li>
+                            <li>
+                                <a href="#" class="fs_18">Home</a>
+                            </li>
+                            <li>
+                                <a href="#" class="fs_18">Home</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <section class="hero_section pt_100 pb_100">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="hero_content_wrap">
+                        <h1 class="fs_48">Web Designer & WordPress Developer</h1>
+                        <p class="fs_18">I create modern, responsive, and high-performing websites that help businesses
+                            establish a
+                            strong online presence and achieve their goals.</p>
+                        <div class="button_wrap">
+                            <a href="#">Explore More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="hero_image_wrap">
+                        <img src="./assets/img/developer-image.webp" alt="image">
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
+    <footer class="portfolio_footer">
+        <div class="container">
+            <div class="footer_wrap">
+                <h3 class="fs_28">Kaushal Arya</h3>
+                <p class="fs_18">Web Designer & WordPress Developer</p>
+                <p>© 2026 Kaushal Arya. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
 </body>
 
 </html>
